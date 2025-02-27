@@ -99,11 +99,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-94",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 844.75, 323.0, 402.0, 20.0 ],
-					"text" : "select - bang out the corresponding number when sent via the inlet"
+					"patching_rect" : [ 844.75, 311.0, 402.0, 33.0 ],
+					"text" : "select - bang out the corresponding outlet to the number when sent via the inlet"
 				}
 
 			}
