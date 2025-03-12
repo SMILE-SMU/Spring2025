@@ -9,7 +9,7 @@ let capture; //capture object representing webcam
 let target_hue; //target color
 let target_color = 255; //rgb of target
 let targetIndex = 7; //default index for white -- not using in a substantial way
-//hsv_colors -- ranges of the values for each color classification 
+//hsv_colors -- ranges of the values for each color classification
 let redHSV = [
     0,
     60
