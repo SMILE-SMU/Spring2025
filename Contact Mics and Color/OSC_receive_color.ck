@@ -41,7 +41,7 @@ OscIn oin;
 // create our OSC message
 OscMsg msg;
 // use port 9000 as I am sending via javascript on port 9000, so we must receive there
-9000 => oin.port;
+9002 => oin.port;
 
 //these are all the different submessages that we will be receiving, actual message will be /colorDetect/targetPercent, /colorDetect/red, etc.
 ["targetPercent", "red", "yellow", "green", "cyan", "blue", "magenta", "black", "white", "grey" ] @=> string colorNames[];
@@ -70,7 +70,7 @@ while ( true )
     // grab the next OSC - Open Sound Control message from the queue when there is a message
     while ( oin.recv(msg) != 0 )
     { 
-       //<<<msg.address + ": " + msg.getFloat(0) >>>; //uncomment to print out the all messages on the console, so we can see them
+       <<<msg.address + ": " + msg.getFloat(0) >>>; //uncomment to print out the all messages on the console, so we can see them
 
         if( messages[msg.address] == 0 ) //if its the target percent -- i.e., the color we asked it to track
         {

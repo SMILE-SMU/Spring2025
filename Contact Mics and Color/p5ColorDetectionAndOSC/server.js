@@ -55,10 +55,10 @@ function setupOSC()
   osc.open();
 }
 setupOSC(); //call the function to setup the OSC object
-//osc?.send( new OSC.Message( "/testMessage"), { port: 9000 } ); //send a test message
+osc?.send( new OSC.Message( "/testMessage"), { port: 9002 } ); //send a test message
 
 //receives the messages from the broswer and sends them to the OSC object
-app.get('/colorDetect/targetPercent', (req, res) => {
+app.get('/colorDetect', (req, res) => {
     let target = req.query.targetPercent; //get the target percent from the query string
     osc?.send( new OSC.Message( "/colorDetect/targetPercent", parseFloat(req.query.targetPercent)), { port: 9000 } ); //send the target percent via the OSC object
 
@@ -78,22 +78,22 @@ app.get('/colorDetect/targetPercent', (req, res) => {
 });
 
 
-app.get('/colorDetect', (req, res) => {
-    let target = req.query.targetPercent;
-    //let message = new OSC.Message('/colorDetect/targetPercent', target);
-    osc?.send( new OSC.Message( "/colorDetect/targetPercent", parseFloat(req.query.targetPercent)), { port: 9000 } ); 
+// app.get('/colorDetect', (req, res) => {
+//     let target = req.query.targetPercent;
+//     //let message = new OSC.Message('/colorDetect/targetPercent', target);
+//     osc?.send( new OSC.Message( "/colorDetect/targetPercent", parseFloat(req.query.targetPercent)), { port: 9000 } ); 
 
-    let colors = []; 
-    for(let i=0; i<colorNames.length; i++)
-    {
-        let query = "req.query." + colorNames[i];
-        colors.push(eval(query));
-        let msg = "/colorDetect/" + colorNames[i];
-        //console.log(query + " " + colors[i]); 
-        //console.log(msg);
-        osc?.send( new OSC.Message( msg,  parseFloat(colors[i])), { port: 9000 } ); 
-    }
+//     let colors = []; 
+//     for(let i=0; i<colorNames.length; i++)
+//     {
+//         let query = "req.query." + colorNames[i];
+//         colors.push(eval(query));
+//         let msg = "/colorDetect/" + colorNames[i];
+//         //console.log(query + " " + colors[i]); 
+//         //console.log(msg);
+//         osc?.send( new OSC.Message( msg,  parseFloat(colors[i])), { port: 9000 } ); 
+//     }
 
-    //console.log("sent: "+target );
-    res.send('Color sent to OSC');
-});
+//     //console.log("sent: "+target );
+//     res.send('Color sent to OSC');
+// });

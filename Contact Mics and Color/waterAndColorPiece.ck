@@ -222,11 +222,14 @@ function respondToOsc()
         //<<<msg.address + ": " + msg.getFloat(0) >>>; //uncomment to print out the all messages on the console, so we can see them
         //referencing this array:
         // ["targetPercent", "red", "yellow", "green", "cyan", "blue", "magenta", "black", "white", "grey" ] @=> string colorNames[];
-        
+        <<<osc_msg.address>>>;
+
         
         if( messages[osc_msg.address] == 0 ) //if its the target percent -- i.e., the color we asked it to track
         {
-            sinGain.set(osc_msg.getFloat(0)*0.05); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
+            //sinGain.set(osc_msg.getFloat(0)*10*follower.last()); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
+            sinGain.set(osc_msg.getFloat(0)*10); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
+            <<<osc_msg.getFloat(0)>>>;
         }
         else if( messages[osc_msg.address] == 2 ) //if its yellow -- how much % of the screen is yellow now?
         {
