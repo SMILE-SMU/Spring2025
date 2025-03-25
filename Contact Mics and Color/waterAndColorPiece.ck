@@ -228,7 +228,7 @@ function respondToOsc()
         if( messages[osc_msg.address] == 0 ) //if its the target percent -- i.e., the color we asked it to track
         {
             //sinGain.set(osc_msg.getFloat(0)*10*follower.last()); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
-            sinGain.set(osc_msg.getFloat(0)*10); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
+            sinGain.set(osc_msg.getFloat(0)); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
             <<<osc_msg.getFloat(0)>>>;
         }
         else if( messages[osc_msg.address] == 2 ) //if its yellow -- how much % of the screen is yellow now?
@@ -238,7 +238,7 @@ function respondToOsc()
             if ( osc_msg.getFloat(0) > 0.024 ) 
             {
                 1 => sectionIndex;
-            }
+            s
             else
             {
                 0 => sectionIndex;
