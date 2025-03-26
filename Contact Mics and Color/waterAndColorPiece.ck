@@ -238,7 +238,7 @@ function respondToOsc()
             if ( osc_msg.getFloat(0) > 0.024 ) 
             {
                 1 => sectionIndex;
-            s
+            }
             else
             {
                 0 => sectionIndex;
