@@ -13,16 +13,15 @@ In one terminal:
  % cd "Contact Mics and Color"
  % cd p5ColorDetectionAndOSC
  % ls #note: this lists the directory & the # is a comment so won't run
+ % rm -r -rf node_modules # just in case, erase the old node_modules, particularly recommended for Windows or Linux systems -- only do this once on INSTALL
+ % npm install # this gets all the other code you need from the internet & puts it in the right places, only do this ONCE for the install
  % pwd #gets the current file path where you are -- use this to copy & paste and then cd into the same place
- % node server.js #starts the server
+ % npm run start #starts the server -- should start BOTH servers, but if only one runs and then starts the other when you quit it, then continue below!!
  
  ===== 2nd terminal window!!  ===== 
  % cd "Users/yourname/Downloads/Spring2025-main/Contact Mics and Color/p5ColorDetectionAndOSC" #change the directory in one go, needs "" as 
        there are spaces -- in git-bash/Windows you may need to go through the whole cd process again as there were some problems with this
- % ls #lists the current directory, should be same as current directory of the 1st window
- % rm -r -rf node_modules # just in case, erase the old node_modules, particularly recommended for Windows or Linux systems -- only do this once on INSTALL
- % npm install # this gets all the other code you need from the internet & puts it in the right places, only do this ONCE for the install
- % npm run start # this starts the server!! so you'll want to do this to start always. Copy the url it gives you into your own browser. Color detection has started!!
+ % ls #lists the current directory, should be same as current directory of the 1st window % npm run start # this starts the server!! so you'll want to do this to start always. Copy the url it gives you into your own browser. Color detection has started!!
  
  Once running from the browser, you can click to choose a target color & you can also press space bar to see all the color values at that current frame/moment
  It sends OSC values to the 9000 port referenced in this example patch

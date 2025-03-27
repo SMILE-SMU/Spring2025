@@ -1,7 +1,7 @@
 /** 
     Coder: Courtney Brown
     Date: Mar. 12, 2025
-    Desc: A piece for contact microphones and color detection. See OSC_receive_color.ck for usage and how to install/start js servers for color detection
+    Desc: A piece for hydrophones and color detection. See OSC_receive_color.ck for a less complicated example that only uses color detection.
 
     One task would be refactor to use loops and arrays to get rid of some of this code repetition
 
@@ -12,12 +12,42 @@
         Keypress:
             '1' - turns on the echo on the bandpass filters of the microphone input
             '2' - turns off the echo on the bandpass filters of the microphone input
+            ' ' - stops choosing midi notes randomly from C harmonic minor & then will play random short MELODIES from C harmonic minor
         Color detection via Camera on Web:
             % Target color (chosen interactively) -- controls gain of ongoing sin waves additive synthesis
             % of magenta -- controls the octave of the sine wave sounds (threshholded)
             % of black -- controls the octave of reson filters on the mic input (threshholded)
             
+            Feel free to add more interactivity people! :D
+            
 **/
+
+/************
+TO run the servers: 
+Open a terminal or git-bash window.
+ Use cd ('change directory') to navigate to the correct folder directory
+ eg. (the % is just noting the command-line, not something you would type in, and # is for comments so don't need to type that in)
+ % cd ~/Downloads/Spring2025-main
+ % cd "Contact Mics and Color"
+ % cd p5ColorDetectionAndOSC
+ % ls #note: this lists the directory & the # is a comment so won't run
+ % pwd #gets the current file path where you are -- use this to copy & paste and then cd into the same place IF you need a 2nd window -- see below.
+ % rm -r -rf node_modules # just in case, erase the old node_modules, particularly recommended for Windows or Linux systems -- only do this once on INSTALL / each folder download
+ % npm install # this gets all the other code you need from the internet & puts it in the right places, only do this ONCE for the install
+ % npm run start #starts both servers - ideally lol.
+ 
+ If it does not start both servers at once (only for outdated operation systems) 
+ then you'll need to open package.json & delete the "& node server.js" part under scripts. Save. Then run:
+ % npm run start #starts ONE server with your edits
+ 
+ Now, open a 2nd terminal window, navigate to the same folder (you can use the path you got from pwd earlier) and then:
+ % node server.js
+   
+ Once running from the browser, you can click to choose a target color & you can also press space bar to see all the color values at that current frame/moment
+ The target color will start the dirge-y sine tones.
+ It sends OSC values to the 9000 port -- if you need to change the port, you'll need to change it both here and server.js 
+ but don't do this unless you know what you're doing... 
+*************/
 
 @import "Follower.ck"
 @import "SmoothedFloat.ck"
@@ -228,7 +258,7 @@ function respondToOsc()
         if( messages[osc_msg.address] == 0 ) //if its the target percent -- i.e., the color we asked it to track
         {
             //sinGain.set(osc_msg.getFloat(0)*10*follower.last()); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
-            sinGain.set(osc_msg.getFloat(0)); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
+            sinGain.set(osc_msg.getFloat(0)*0.01); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
             <<<osc_msg.getFloat(0)>>>;
         }
         else if( messages[osc_msg.address] == 2 ) //if its yellow -- how much % of the screen is yellow now?
