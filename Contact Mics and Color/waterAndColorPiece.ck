@@ -2,10 +2,11 @@
     Coder: Courtney Brown
     Date: Mar. 12, 2025
     Desc: A piece for hydrophones and color detection. See OSC_receive_color.ck for a less complicated example that only uses color detection.
+    
 
-    One task would be refactor to use loops and arrays to get rid of some of this code repetition
+    One task would be refactor to use loops and arrays to get rid of some of this code repetition -- repetition kept in for students new to coding :) I know I used a lot of functions and stuff but I am only human and I needed to organize the code at least somewhat to stay SANE ok! :) 
 
-    **This cannot be run in webChuck because it uses OSC.
+    **This cannot be run in WebChuck because it uses OSC.
         
     The piece plays random notes and sequences in C harmonic minor in response to contact mic input (or any mic input)
     Interactivity:
@@ -23,7 +24,7 @@
 **/
 
 /************
-TO run the servers: 
+TO run the servers for color detection which is done in javascript and p5.js and nodejs: 
 Open a terminal or git-bash window.
  Use cd ('change directory') to navigate to the correct folder directory
  eg. (the % is just noting the command-line, not something you would type in, and # is for comments so don't need to type that in)
@@ -63,8 +64,9 @@ adc => ResonZ reson5 => Echo echo5 => limiter;
 limiter.limit();
 //turnOffReson();
 
-//adc follower -- can use audio in to change other parameters
-Follower follower => blackhole; 
+
+//set up the signal path for all the sine waves
+Follower follower => blackhole; //adc follower -- can use audio in to change other parameters BUT I did not implement that in the end due to aesthetic reasons, however, here it is.
 SinOsc sin1 => ADSR sinEnv(450::ms, 50::ms, 0, 500::ms) => Echo echoSin => JCRev reverb => limiter; 
 SinOsc sin2 => echoSin => sinEnv => reverb; 
 SinOsc sin3 => sinEnv => reverb; 
@@ -99,7 +101,7 @@ SmoothedFloat sinGain(0.0, 250);
 [68, 71, 72], 
 [60, 62, 63], 
 [60, 58, 56, 55, 53], 
-[67-12, 71-12, 74-12, 76-12, 7-74], 
+[67-12, 71-12, 74-12, 76-12, 74-12], //I wanted everything to be an octave below and it was fastor to have the computer do the math. ya know.
 [67, 63, 62, 59, 60, 62], 
 [55, 56, 57, 59, 71] 
 ] @=> int section2[][];
@@ -115,13 +117,14 @@ section1 @=> int midiNotes[]; //first thing to play
 //an array of possible rhythms -- there is more 250::ms so when we choose randomly we'll get more
 [250::ms, 500::ms, 750::ms, 250::ms, 250::ms, 250::ms, 1000::ms] @=> dur rhythms[]; 
 
+//setting up the initial note lengths & variables to keep track of time in this piece.
 250::ms => dur noteLength; //how long a note will play (ie, a pitch will filter -- as the incoming audio will really affect rhythm)
 now => time lastChecked; 
 0 => int index;
 1000::ms => dur sinNoteLength; 
 now => time lastCheckedSin;
 
-// HID input and HID message
+// HID input and HID message -- keyboard!
 Hid hi;
 HidMsg msg;
 
@@ -148,12 +151,13 @@ setupOSCMessages(); //setup all the OSC messages for receiving
 0 => int pitchOctaveDropResons; //how much to drop (negative numbers go up), 0 doesn't do anything
 
 
-SmoothedFloat freq(Std.mtof(60), 10000);
-Std.mtof(60) => float sinFreq;
+
+SmoothedFloat freq(Std.mtof(60), 10000); //freq of the contact mic in / subtractive synthesis
+Std.mtof(60) => float sinFreq; //freq of the sine tones
 //================================================================================
 // END INIT CODE AND START EVENT LOOP
 //================================================================================
-while( true ) //go FOREVER
+while( true ) //go FOREVER!!!
 {
     1::ms => now; //check a millisecond to now -- make time pass
     freq.update(); 
@@ -175,9 +179,11 @@ while( true ) //go FOREVER
         //also, set the other bandpass center frequencies to harmonic series of 1st freq.
         freq.set(Std.mtof( midiNotes[index]-12*pitchOctaveDropResons ));         
 
+        //update the rhythms.
         Math.random2(0, rhythms.size()-1) => int rhyIndex; 
         rhythms[rhyIndex] => noteLength;
  
+        //update the pitches
         if( sectionIndex == 1 )
         { 
             index + 1 => index ;  //incrementing the note index in the melody
@@ -249,11 +255,10 @@ function respondToOsc()
     // grab the next OSC - Open Sound Control message from the queue when there is a message
     while ( oin.recv(osc_msg) != 0 )
     { 
-        //<<<msg.address + ": " + msg.getFloat(0) >>>; //uncomment to print out the all messages on the console, so we can see them
+        <<<msg.address + ": " + msg.getFloat(0) >>>; //uncomment to print out the all messages on the console, so we can see them & test or comment to hide
+        
         //referencing this array:
         // ["targetPercent", "red", "yellow", "green", "cyan", "blue", "magenta", "black", "white", "grey" ] @=> string colorNames[];
-        <<<osc_msg.address>>>;
-
         
         if( messages[osc_msg.address] == 0 ) //if its the target percent -- i.e., the color we asked it to track
         {
@@ -319,11 +324,11 @@ function changeSection()
 {
     if(sectionIndex == 0)
     {
-        1 => sectionIndex;
+        1 => sectionIndex; //play the melodies
     }
     else 
     {
-        0 => sectionIndex;
+        0 => sectionIndex; //play random notes
     }
 }
 //================================================================================
