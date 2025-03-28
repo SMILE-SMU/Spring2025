@@ -255,7 +255,7 @@ function respondToOsc()
     // grab the next OSC - Open Sound Control message from the queue when there is a message
     while ( oin.recv(osc_msg) != 0 )
     { 
-        <<<msg.address + ": " + msg.getFloat(0) >>>; //uncomment to print out the all messages on the console, so we can see them & test or comment to hide
+        <<<osc_msg.address + ": " + osc_msg.getFloat(0) >>>; //uncomment to print out the all messages on the console, so we can see them & test or comment to hide
         
         //referencing this array:
         // ["targetPercent", "red", "yellow", "green", "cyan", "blue", "magenta", "black", "white", "grey" ] @=> string colorNames[];
