@@ -11,15 +11,35 @@
     The piece plays random notes and sequences in C harmonic minor in response to contact mic input (or any mic input)
     Interactivity:
         Keypress:
+            ' ' - stops choosing midi notes randomly from C harmonic minor & then will play random short MELODIES from C harmonic minor
             '1' - turns on the echo on the bandpass filters of the microphone input
             '2' - turns off the echo on the bandpass filters of the microphone input
-            ' ' - stops choosing midi notes randomly from C harmonic minor & then will play random short MELODIES from C harmonic minor
+            
+            
+        controlling sine tones from color detection:
+            '3' - SILENCES the sine tones from color detection (DEFAULT)
+            '4' - turns on quiet sine tones from color detection ( multiplies by 0.01 )
+            '5' - turns on moderately loud sine tones from color detection ( multiplies by 0.5 )
+            '6' - turns on loud-ish sine tones from color detection ( multiplies by 1.0 )
+                        
+        turns OSC on and off
+            '9' - OSC receiving
+            '0' - OSC off
+            
+             changes octave of the microphone input 
+             ONLY works if OSC is off or not working (LOL) as color normally changes this 
+             'a' - no change, original 
+             's' - 1 octave higher
+             'd' - 2 octaves higher
+             'z' - 1 octave lower
+             'x' - 2 octaves lower
+
         Color detection via Camera on Web:
             % Target color (chosen interactively) -- controls gain of ongoing sin waves additive synthesis
             % of magenta -- controls the octave of the sine wave sounds (threshholded)
             % of black -- controls the octave of reson filters on the mic input (threshholded)
             
-            Feel free to add more interactivity people! :D
+            Feel free to add more interactivity !!! :D
             
 **/
 
@@ -62,6 +82,7 @@ adc => ResonZ reson5 => Echo echo5 => limiter;
 [reson1, reson2, reson3, reson4, reson5] @=> ResonZ resons[];
 [echo1, echo2, echo3, echo4, echo5] @=> Echo echos[];
 limiter.limit();
+5 => limiter.gain; 
 //turnOffReson();
 
 
@@ -151,9 +172,15 @@ setupOSCMessages(); //setup all the OSC messages for receiving
 0 => int pitchOctaveDropResons; //how much to drop (negative numbers go up), 0 doesn't do anything
 
 
-
 SmoothedFloat freq(Std.mtof(60), 10000); //freq of the contact mic in / subtractive synthesis
 Std.mtof(60) => float sinFreq; //freq of the sine tones
+
+//To further have control over the color detection
+0.0 => float sinGainAmpModifier; 
+1 => int acceptOSC; //to turn osc on and off
+
+
+
 //================================================================================
 // END INIT CODE AND START EVENT LOOP
 //================================================================================
@@ -163,7 +190,10 @@ while( true ) //go FOREVER!!!
     freq.update(); 
     updateFilters(freq);
     updateOscillators(sinFreq, sinGain);
-    respondToOsc();
+    if( acceptOSC == 1 )
+    {
+        respondToOsc();
+    }
     respondToKeypress();
     updateSins();
     
@@ -225,6 +255,24 @@ function updateSins()
    
 }
 //================================================================================
+/*
+            '3' - SILENCES the sine tones from color detection (DEFAULT)
+            '4' - turns on quiet sine tones from color detection ( multiplies by 0.01 )
+            '5' - turns on moderately loud sine tones from color detection ( multiplies by 0.5 )
+            '6' - turns on loud-ish sine tones from color detection ( multiplies by 1.0 )
+                        
+        turns OSC on and off
+            '9' - OSC receiving
+            '0' - OSC off
+            
+       changes octave of the microphone input (only works if OSC is off or not working (LOL) as color normally changes this )
+             'a' - no change, original 
+             's' - 1 octave higher
+             'd' - 2 octaves higher
+             'z' - 1 octave lower
+             'x' - 2 octaves lower
+*/
+//===========
 function respondToKeypress()
 {
     // get message for keyboard
@@ -246,6 +294,51 @@ function respondToKeypress()
             {
                 signalWithOutEcho();
             }
+            else if( msg.which == 32 ) //'3' silences sine tones from color detection
+            {
+                0 => sinGainAmpModifier;
+            }
+            else if( msg.which == 33 ) //'4' v. quiet-ish color detection sine tones
+            {
+                0.01 => sinGainAmpModifier;
+            }
+            else if( msg.which == 34 ) //'5' v. much louder color detection sine tones
+            {
+                0.5 => sinGainAmpModifier;
+            }
+            else if( msg.which == 35 ) //'6' v. much louder color detection sine tones
+            {
+                1.0 => sinGainAmpModifier;
+            }
+            else if( msg.which == 38 ) //'9' receive OSC again
+            {
+                1 => acceptOSC;
+            }
+            else if( msg.which == 39 ) //'0' ignore OSC 
+            {
+                0 => acceptOSC;
+            }
+            else if( msg.which == 4 ) //'a' no change for mic output sub. synth
+            {
+                0 => pitchOctaveDropResons;
+            }           
+            else if( msg.which == 22 ) //'s' - 1 8va for mic output sub. synth
+            {
+                -1 => pitchOctaveDropResons;
+            }             
+            else if( msg.which == 7 ) //'d' no change for mic output sub. synth
+            {
+                -2 => pitchOctaveDropResons;
+            } 
+            else if( msg.which == 29 ) //'z' - 1 8va DOWN for mic output sub. synth
+            {
+                1 => pitchOctaveDropResons;
+            }             
+            else if( msg.which == 27 ) //'x' - 2 8va DOWN for mic output sub. synth
+            {
+                2 => pitchOctaveDropResons;
+            }            
+            
         }        
     }  
 }
@@ -255,7 +348,7 @@ function respondToOsc()
     // grab the next OSC - Open Sound Control message from the queue when there is a message
     while ( oin.recv(osc_msg) != 0 )
     { 
-        <<<osc_msg.address + ": " + osc_msg.getFloat(0) >>>; //uncomment to print out the all messages on the console, so we can see them & test or comment to hide
+        //<<<osc_msg.address + ": " + osc_msg.getFloat(0) >>>; //uncomment to print out the all messages on the console, so we can see them & test or comment to hide
         
         //referencing this array:
         // ["targetPercent", "red", "yellow", "green", "cyan", "blue", "magenta", "black", "white", "grey" ] @=> string colorNames[];
@@ -263,9 +356,9 @@ function respondToOsc()
         if( messages[osc_msg.address] == 0 ) //if its the target percent -- i.e., the color we asked it to track
         {
             //sinGain.set(osc_msg.getFloat(0)*10*follower.last()); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
-            sinGain.set(osc_msg.getFloat(0)*0.01); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
-            <<<osc_msg.getFloat(0)>>>;
-        }
+            sinGain.set(osc_msg.getFloat(0)*sinGainAmpModifier); //we will set the gain to be determined by the amt. of target color shown on the video camera screen.
+            //<<<osc_msg.getFloat(0)>>>;
+        }/***** don't control this way
         else if( messages[osc_msg.address] == 2 ) //if its yellow -- how much % of the screen is yellow now?
         {
             //TODO -- create different things for different colors!!
@@ -279,7 +372,7 @@ function respondToOsc()
                 0 => sectionIndex;
             }
             
-        }
+        } ****/
         else if( messages[osc_msg.address] == 6 ) //if its magenta -- how much % of the screen is yellow now?
         {
             //TODO -- create different things for different colors!!
@@ -305,7 +398,6 @@ function respondToOsc()
             if ( osc_msg.getFloat(0) > 0.075 ) 
             {
                 2 => pitchOctaveDropResons;
-                <<<"here">>>;
             }
             else if ( osc_msg.getFloat(0) > 0.05 ) 
             {
