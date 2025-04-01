@@ -5,7 +5,7 @@
   "main": "sketch.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html & node server.js"
+    "start": "parcel index.html"
   },
   "keywords": [],
   "author": "",
