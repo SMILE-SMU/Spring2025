@@ -19,7 +19,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 710.0, 204.0, 330.0, 47.0 ],
+					"patching_rect" : [ 710.0, 204.0, 331.0, 47.0 ],
 					"text" : "BEFORE START!! Connect the 2 keyboards -- must be those models!!  to each midiin -- double-click midiin to select keyboard"
 				}
 
@@ -610,7 +610,7 @@
 
 											}
  ],
-										"originid" : "pat-136"
+										"originid" : "pat-162"
 									}
 ,
 									"patching_rect" : [ 352.0, 682.0, 66.0, 22.0 ],
@@ -853,7 +853,7 @@
 
 											}
  ],
-										"originid" : "pat-138"
+										"originid" : "pat-164"
 									}
 ,
 									"patching_rect" : [ 76.0, 837.0, 49.0, 22.0 ],
@@ -989,7 +989,7 @@
 
 											}
  ],
-										"originid" : "pat-140"
+										"originid" : "pat-166"
 									}
 ,
 									"patching_rect" : [ 74.0, 578.0, 196.0, 22.0 ],
@@ -1093,7 +1093,7 @@
 
 											}
  ],
-										"originid" : "pat-142"
+										"originid" : "pat-168"
 									}
 ,
 									"patching_rect" : [ 74.0, 550.0, 73.0, 22.0 ],
@@ -1278,7 +1278,7 @@
 
 											}
  ],
-										"originid" : "pat-144"
+										"originid" : "pat-170"
 									}
 ,
 									"patching_rect" : [ 74.0, 510.54199134199132, 139.0, 22.0 ],
@@ -1785,7 +1785,7 @@
 
 											}
  ],
-										"originid" : "pat-146"
+										"originid" : "pat-172"
 									}
 ,
 									"patching_rect" : [ 74.0, 475.0, 87.0, 22.0 ],
@@ -2076,7 +2076,7 @@
 
 											}
  ],
-										"originid" : "pat-148"
+										"originid" : "pat-174"
 									}
 ,
 									"patching_rect" : [ 79.0, 424.54199134199132, 77.0, 22.0 ],
@@ -2305,7 +2305,7 @@
 
 							}
  ],
-						"originid" : "pat-134"
+						"originid" : "pat-160"
 					}
 ,
 					"patching_rect" : [ 543.0, 118.0, 155.0, 22.0 ],
@@ -2711,7 +2711,7 @@
 
 							}
  ],
-						"originid" : "pat-164"
+						"originid" : "pat-190"
 					}
 ,
 					"patching_rect" : [ 15.999999666666668, 450.0, 49.0, 22.0 ],
@@ -2834,7 +2834,7 @@
 
 							}
  ],
-						"originid" : "pat-166"
+						"originid" : "pat-192"
 					}
 ,
 					"patching_rect" : [ 15.999999666666668, 200.380952380952294, 196.0, 22.0 ],
@@ -2938,7 +2938,7 @@
 
 							}
  ],
-						"originid" : "pat-168"
+						"originid" : "pat-194"
 					}
 ,
 					"patching_rect" : [ 15.999999666666668, 163.461471861471864, 73.0, 22.0 ],
@@ -3123,7 +3123,7 @@
 
 							}
  ],
-						"originid" : "pat-170"
+						"originid" : "pat-196"
 					}
 ,
 					"patching_rect" : [ 16.0, 126.54199134199132, 139.0, 22.0 ],
@@ -3630,7 +3630,7 @@
 
 							}
  ],
-						"originid" : "pat-172"
+						"originid" : "pat-198"
 					}
 ,
 					"patching_rect" : [ 16.0, 89.622510822510833, 62.0, 22.0 ],
@@ -4344,7 +4344,7 @@
 
 							}
  ],
-						"originid" : "pat-174"
+						"originid" : "pat-200"
 					}
 ,
 					"patching_rect" : [ 15.999999666666668, 486.0, 107.0, 22.0 ],
@@ -4538,7 +4538,7 @@
 
 							}
  ],
-						"originid" : "pat-220"
+						"originid" : "pat-246"
 					}
 ,
 					"patching_rect" : [ 16.0, 52.703030303030289, 52.0, 22.0 ],
@@ -4705,6 +4705,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
+					"order" : 0,
 					"source" : [ "obj-27", 1 ]
 				}
 
@@ -4712,6 +4713,23 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
+					"order" : 0,
+					"source" : [ "obj-27", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 1 ],
+					"order" : 1,
+					"source" : [ "obj-27", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"order" : 1,
 					"source" : [ "obj-27", 0 ]
 				}
 
@@ -4793,7 +4811,7 @@
 
 			}
  ],
-		"originid" : "pat-124",
+		"originid" : "pat-6",
 		"parameters" : 		{
 			"obj-1::obj-51" : [ "Gain[1]", "Gain", 0 ],
 			"obj-54" : [ "Gain", "Gain", 0 ],
