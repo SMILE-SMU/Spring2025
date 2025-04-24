@@ -52,7 +52,6 @@ function setupOSC()
     }
   };
   osc = new OSC({ plugin: new OSC.DatagramPlugin(options) });
-  osc.open();
 }
 setupOSC(); //call the function to setup the OSC object
 osc?.send( new OSC.Message( "/testMessage"), { port: 9002 } ); //send a test message

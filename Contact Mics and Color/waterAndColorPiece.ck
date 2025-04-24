@@ -150,7 +150,7 @@ Hid hi;
 HidMsg msg;
 
 // which keyboard
-0 => int device;
+1 => int device;
 
 // open keyboard (get device number from command line)
 if( !hi.openKeyboard( device ) ) me.exit();
@@ -275,9 +275,10 @@ function updateSins()
 //===========
 function respondToKeypress()
 {
+    
     // get message for keyboard
     while( hi.recv( msg ) )
-    {
+    {        
         // check
         if( msg.isButtonDown() )
         {
@@ -285,58 +286,85 @@ function respondToKeypress()
             if( msg.which == 44 ) //space bar to change 
             {
                 changeSection();
+                <<<"Section changed!">>>;
             }
             else if( msg.which == 30 ) //'1' key adds echo
             {
                 signalWithEcho();
+                <<<"Echo On!">>>;
+
             }
             else if( msg.which == 31 ) //'2' key removes echo
             {
                 signalWithOutEcho();
+                <<<"Echo Off!">>>;
+
             }
             else if( msg.which == 32 ) //'3' silences sine tones from color detection
             {
                 0 => sinGainAmpModifier;
+                <<<"Color Detect Sins Off!">>>;
+
             }
             else if( msg.which == 33 ) //'4' v. quiet-ish color detection sine tones
             {
                 0.01 => sinGainAmpModifier;
+                <<<"Color Detect Sins On!! Gain: 0.01">>>;
+
             }
             else if( msg.which == 34 ) //'5' v. much louder color detection sine tones
             {
                 0.5 => sinGainAmpModifier;
+                <<<"Color Detect Sins On!! Gain: 0.5">>>;
+
             }
             else if( msg.which == 35 ) //'6' v. much louder color detection sine tones
             {
                 1.0 => sinGainAmpModifier;
+                 <<<"Color Detect Sins On!! Gain: 1">>>;
+
             }
             else if( msg.which == 38 ) //'9' receive OSC again
             {
                 1 => acceptOSC;
+                <<<"Accepting OSC!">>>;
+
             }
             else if( msg.which == 39 ) //'0' ignore OSC 
             {
                 0 => acceptOSC;
+                <<<"OSC Messages OFF!">>>;
+
             }
             else if( msg.which == 4 ) //'a' no change for mic output sub. synth
             {
                 0 => pitchOctaveDropResons;
+                <<<"Water sounds at original octave!">>>;
+
             }           
             else if( msg.which == 22 ) //'s' - 1 8va for mic output sub. synth
             {
                 -1 => pitchOctaveDropResons;
+                <<<"Water sounds DOWN an octave!">>>;
+
             }             
             else if( msg.which == 7 ) //'d' no change for mic output sub. synth
             {
                 -2 => pitchOctaveDropResons;
+               <<<"Water sounds DOWN TWO octaves!">>>;
+
             } 
             else if( msg.which == 29 ) //'z' - 1 8va DOWN for mic output sub. synth
             {
                 1 => pitchOctaveDropResons;
+                <<<"Water sounds UP an octave!">>>;
+
             }             
             else if( msg.which == 27 ) //'x' - 2 8va DOWN for mic output sub. synth
             {
                 2 => pitchOctaveDropResons;
+                <<<"Water sounds UP TWO octaves!">>>;
+
             }            
             
         }        
@@ -417,10 +445,13 @@ function changeSection()
     if(sectionIndex == 0)
     {
         1 => sectionIndex; //play the melodies
+        <<<"Playing set melodies!!">>>;
     }
     else 
     {
         0 => sectionIndex; //play random notes
+        <<<"Playing random notes in C minor!!">>>;
+
     }
 }
 //================================================================================
