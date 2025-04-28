@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 517.0, 94.0, 938.0, 886.0 ],
+		"rect" : [ 766.0, 139.0, 938.0, 886.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -90,7 +90,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 135.0, 469.0, 195.0, 22.0 ],
-					"text" : "0.557292 0.890625"
+					"text" : "0.536071 1"
 				}
 
 			}
@@ -610,7 +610,7 @@
 
 											}
  ],
-										"originid" : "pat-162"
+										"originid" : "pat-201"
 									}
 ,
 									"patching_rect" : [ 352.0, 682.0, 66.0, 22.0 ],
@@ -853,7 +853,7 @@
 
 											}
  ],
-										"originid" : "pat-164"
+										"originid" : "pat-203"
 									}
 ,
 									"patching_rect" : [ 76.0, 837.0, 49.0, 22.0 ],
@@ -989,7 +989,7 @@
 
 											}
  ],
-										"originid" : "pat-166"
+										"originid" : "pat-205"
 									}
 ,
 									"patching_rect" : [ 74.0, 578.0, 196.0, 22.0 ],
@@ -1093,7 +1093,7 @@
 
 											}
  ],
-										"originid" : "pat-168"
+										"originid" : "pat-207"
 									}
 ,
 									"patching_rect" : [ 74.0, 550.0, 73.0, 22.0 ],
@@ -1278,7 +1278,7 @@
 
 											}
  ],
-										"originid" : "pat-170"
+										"originid" : "pat-209"
 									}
 ,
 									"patching_rect" : [ 74.0, 510.54199134199132, 139.0, 22.0 ],
@@ -1785,7 +1785,7 @@
 
 											}
  ],
-										"originid" : "pat-172"
+										"originid" : "pat-211"
 									}
 ,
 									"patching_rect" : [ 74.0, 475.0, 87.0, 22.0 ],
@@ -2076,7 +2076,7 @@
 
 											}
  ],
-										"originid" : "pat-174"
+										"originid" : "pat-213"
 									}
 ,
 									"patching_rect" : [ 79.0, 424.54199134199132, 77.0, 22.0 ],
@@ -2305,7 +2305,7 @@
 
 							}
  ],
-						"originid" : "pat-160"
+						"originid" : "pat-199"
 					}
 ,
 					"patching_rect" : [ 543.0, 118.0, 155.0, 22.0 ],
@@ -2515,7 +2515,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 246.0, 211.0, 228.0, 22.0 ],
-									"text" : "knearest \"1512\""
+									"text" : "knearest \"1883\""
 								}
 
 							}
@@ -2711,7 +2711,7 @@
 
 							}
  ],
-						"originid" : "pat-190"
+						"originid" : "pat-229"
 					}
 ,
 					"patching_rect" : [ 15.999999666666668, 450.0, 49.0, 22.0 ],
@@ -2834,7 +2834,7 @@
 
 							}
  ],
-						"originid" : "pat-192"
+						"originid" : "pat-231"
 					}
 ,
 					"patching_rect" : [ 15.999999666666668, 200.380952380952294, 196.0, 22.0 ],
@@ -2938,7 +2938,7 @@
 
 							}
  ],
-						"originid" : "pat-194"
+						"originid" : "pat-233"
 					}
 ,
 					"patching_rect" : [ 15.999999666666668, 163.461471861471864, 73.0, 22.0 ],
@@ -3123,7 +3123,7 @@
 
 							}
  ],
-						"originid" : "pat-196"
+						"originid" : "pat-235"
 					}
 ,
 					"patching_rect" : [ 16.0, 126.54199134199132, 139.0, 22.0 ],
@@ -3630,7 +3630,7 @@
 
 							}
  ],
-						"originid" : "pat-198"
+						"originid" : "pat-237"
 					}
 ,
 					"patching_rect" : [ 16.0, 89.622510822510833, 62.0, 22.0 ],
@@ -4344,7 +4344,7 @@
 
 							}
  ],
-						"originid" : "pat-200"
+						"originid" : "pat-239"
 					}
 ,
 					"patching_rect" : [ 15.999999666666668, 486.0, 107.0, 22.0 ],
@@ -4455,7 +4455,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 16.0, 82.0, 454.0, 22.0 ],
-									"text" : "fluid.bufonsetslice~ @metric 1 @threshold 0.2 @source sound @indices slicepoints"
+									"text" : "fluid.bufonsetslice~ @metric 9 @threshold 0.2 @source sound @indices slicepoints"
 								}
 
 							}
@@ -4538,7 +4538,7 @@
 
 							}
  ],
-						"originid" : "pat-246"
+						"originid" : "pat-285"
 					}
 ,
 					"patching_rect" : [ 16.0, 52.703030303030289, 52.0, 22.0 ],
@@ -4811,7 +4811,7 @@
 
 			}
  ],
-		"originid" : "pat-6",
+		"originid" : "pat-47",
 		"parameters" : 		{
 			"obj-1::obj-51" : [ "Gain[1]", "Gain", 0 ],
 			"obj-54" : [ "Gain", "Gain", 0 ],

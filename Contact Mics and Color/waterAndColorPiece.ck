@@ -59,7 +59,7 @@ Open a terminal or git-bash window.
  
  If it does not start both servers at once (only for outdated operation systems) 
  then you'll need to open package.json & delete the "& node server.js" part under scripts. Save. Then run:
- % npm run start #starts ONE server with your edits
+ % npm run start # starts ONE server with your edits
  
  Now, open a 2nd terminal window, navigate to the same folder (you can use the path you got from pwd earlier) and then:
  % node server.js
