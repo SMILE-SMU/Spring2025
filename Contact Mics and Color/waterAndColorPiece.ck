@@ -150,7 +150,7 @@ Hid hi;
 HidMsg msg;
 
 // which keyboard
-1 => int device;
+0 => int device;
 
 // open keyboard (get device number from command line)
 if( !hi.openKeyboard( device ) ) me.exit();
