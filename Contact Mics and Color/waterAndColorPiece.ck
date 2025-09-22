@@ -6,7 +6,7 @@
 
     One task would be refactor to use loops and arrays to get rid of some of this code repetition -- repetition kept in for students new to coding :) I know I used a lot of functions and stuff but I am only human and I needed to organize the code at least somewhat to stay SANE ok! :) 
 
-    **This cannot be run in WebChuck because it uses OSC.
+    **This cannot be run in WebChuck because it uses OSC
         
     The piece plays random notes and sequences in C harmonic minor in response to contact mic input (or any mic input)
     Interactivity:
@@ -26,7 +26,7 @@
             '9' - OSC receiving
             '0' - OSC off
             
-             changes octave of the microphone input 
+             changes octave of the microphone input 9
              ONLY works if OSC is off or not working (LOL) as color normally changes this 
              'a' - no change, original 
              's' - 1 octave higher
@@ -302,25 +302,25 @@ function respondToKeypress()
             }
             else if( msg.which == 32 ) //'3' silences sine tones from color detection
             {
-                0 => sinGainAmpModifier;
+                0.0 => sinGainAmpModifier;
                 <<<"Color Detect Sins Off!">>>;
 
             }
             else if( msg.which == 33 ) //'4' v. quiet-ish color detection sine tones
             {
-                0.01 => sinGainAmpModifier;
+                0.005 => sinGainAmpModifier;
                 <<<"Color Detect Sins On!! Gain: 0.01">>>;
 
             }
             else if( msg.which == 34 ) //'5' v. much louder color detection sine tones
             {
-                0.5 => sinGainAmpModifier;
+                0.01 => sinGainAmpModifier;
                 <<<"Color Detect Sins On!! Gain: 0.5">>>;
 
             }
             else if( msg.which == 35 ) //'6' v. much louder color detection sine tones
             {
-                1.0 => sinGainAmpModifier;
+                0.02 => sinGainAmpModifier;
                  <<<"Color Detect Sins On!! Gain: 1">>>;
 
             }
