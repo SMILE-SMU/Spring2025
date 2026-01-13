@@ -2,7 +2,7 @@
     Coder: Courtney Brown
     Date: Mar. 12, 2025
     Desc: A piece for hydrophones and color detection. See OSC_receive_color.ck for a less complicated example that only uses color detection.
-    
+    x1
 
     One task would be refactor to use loops and arrays to get rid of some of this code repetition -- repetition kept in for students new to coding :) I know I used a lot of functions and stuff but I am only human and I needed to organize the code at least somewhat to stay SANE ok! :) 
 
@@ -20,7 +20,7 @@
             '3' - SILENCES the sine tones from color detection (DEFAULT)
             '4' - turns on quiet sine tones from color detection ( multiplies by 0.01 )
             '5' - turns on moderately loud sine tones from color detection ( multiplies by 0.5 )
-            '6' - turns on loud-ish sine tones from color detection ( multiplies by 1.0 )
+            '6' - turns on loud-ish sine tones from color detection 1( multiplies by 1.0 )
                         
         turns OSC on and off
             '9' - OSC receiving
@@ -420,6 +420,7 @@ function respondToOsc()
             
             
         }
+        /*
         else if( messages[osc_msg.address] == 7 ) //if its black -- how much % of the screen is black now?
         {
             //TODO -- create different things for different colors!!
@@ -436,6 +437,7 @@ function respondToOsc()
                 0 => pitchOctaveDropResons;
             }
         }
+        */
     } 
 }
 //================================================================================
