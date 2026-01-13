@@ -413,7 +413,12 @@
         <span class="hint">(for slower computers - disables body tracking)</span>
       </label>
     {:else}
-      <button onclick={handleStop}>Stop</button>
+      <div class="control-row">
+        <button onclick={handleStop}>Stop</button>
+        <button onclick={toggleInstrumentMode}>
+          Mode: {instrumentMode === "brass" ? "Brass (Trombone)" : "Strings (Cello/Viola)"}
+        </button>
+      </div>
       {#if performanceMode}
         <span class="mode-indicator">⚡ Performance Mode</span>
       {/if}
